@@ -105,7 +105,7 @@ def player_score():
 
 def bet_amount():
     players_bet_amount = pygame.font.Font(None, 32)
-    pba = players_bet_amount.render(f'Bet: {bet_counter}', False, 'Black')
+    pba = players_bet_amount.render(f'Bet: {bet_counter}', False, '#c12929')
     pba_screen = screen.blit(pba, (807, 530))
     return pba_screen
 
@@ -162,6 +162,7 @@ end_round = pygame.image.load("image/end_roundb.png").convert_alpha()
 rect = end_round.get_rect(center=(1200/2,600/2))
 alpha = 255
 
+  
 confirm_button = pygame.image.load("image/confirm_btn.png").convert_alpha()   
 betting_10 = pygame.image.load("image/bet_10_btn.png").convert_alpha()
 betting_50 = pygame.image.load("image/bet_50_btn.png").convert_alpha()
@@ -248,7 +249,7 @@ while True:
        
     
     if game_active == False:
-        screen.fill("Blue")
+        screen.blit(pygame.image.load("image/titlepage.png"), (0, -20))
         if start_btn.draw(screen):
             asyncio.run(start_game())
             new_player_chip_count()
@@ -259,7 +260,6 @@ while True:
 
         if game_round == False:
             if quit_btn.draw(screen):
-                print('what is this')
                 with open('players_chips.txt', 'w') as players_file:
                     json.dump(players_chip_count, players_file)
                 pygame.quit()
@@ -680,7 +680,6 @@ while True:
                                                 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            print('what is this')
             with open('players_chips.txt', 'w') as players_file:
                 json.dump(players_chip_count, players_file)
             pygame.quit()   
